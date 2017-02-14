@@ -1,83 +1,75 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<title>Minecraft Game</title>
+	<title>Dark Souls RPG</title>
 	<meta charset="UTF-8">
    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-   <link href="https://fonts.googleapis.com/css?family=Audiowide" rel="stylesheet">
+   <link href="https://fonts.googleapis.com/css?family=Ruslan+Display" rel="stylesheet">
    <link href="https://fonts.googleapis.com/css?family=Press+Start+2P" rel="stylesheet">
 	<link type="text/css" rel="stylesheet" href="assets/css/reset.css">
 	<link type="text/css" rel="stylesheet" href="assets/css/style.css">
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 </head>
-<body class ="container">
+<body class ="container-fluid">
 
-<div class="centerBg">
+
 	<div class="row">
-		<div class="col-lg-4 minecraftTitle">
-			<p> Minecraft Game! </p>
-		</div>	
-		<div class="col-lg-8">
-			<!-- intentionally blank -->
-		</div>
-	</div>
-	<div class="row">
-		<div class="col-lg-6 instructions"><br><br>
-			<p> You will be given a random number at the start of the game. </p><br><br>
-			<p> There are four crystals below.  By clicking on a crystal you will add a speific amount of points to your total score.</p><br><br>
-			<p>You win the game by matching your total score to a random number, you lose the game if your total score goes above the random number.</p><br><br>
-			<p>The value of each crystal is hidden from you until you click on it. </p><br><br>
-			<p>Each time when the game starts the game will change the values of each crystal. </p><br><br>
+		<div class="col-lg-12 gameTitle">
+			<p>Super Epic Boss Battle (Dark Souls Style)</p>
 		</div>	
 	</div>
 	<div class="row">
-		<div class="col-lg-3 computerScore">
-			<p> Computer Score </p>
-			<p id ="score"> </p>
-		</div>	
-		<div class="col-lg-2 wins-losses">
-			
-		</div>	
-		<div class="col-lg-1 winnerDisplay">
-			
+		<div class="col-lg-2 sectionTitles">
+			<p>Choose Your Character</p>
 		</div>
-		<div class="col-lg-6">
-			<!-- Intentinally left blank -->
+		<div class="col-lg-1 sectionTitles">
+			<!-- blank -->
 		</div>
+		<div class="col-lg-6 sectionTitles">
+			<p>Bosses</p>
+		</div>		
 	</div>
-	<div class="row rock-images">
+	<div class="row">
+		<div class="col-lg-1 knightCont">
+			<p class="charName"> Knight </p>
+			<img src="assets/images/knight.png" alt="knight" class="knight">
+			<p class="knight-hp"> HP </p>
+		</div>	
+		<div class="col-lg-1 pyromancerCont">
+			<p class="charName"> Pyromancer </p>
+			<img src="assets/images/pyromancer.png" alt="pyromancer" class="pyro">
+			<p class="pyro-hp"> </p>
+		</div>	
+		<div class="col-lg-1">
+		</div>
+		<div class="col-lg-2 pursuerCont">
+			<p class="charName"> Pursuer </p>
+			<img src="assets/images/pursuer.png" alt=pursuer class="pursuer">
+			<p class="pursuer-hp">  </p>
+		</div>	
+		<div class="col-lg-2 crystalCont">
+			<p class="charName"> Crystal Sage </p>
+			<img src="assets/images/crystal-sage.png" alt="crystal-sage" class="crystalSage">
+			<p class="crystal-sage-hp">  </p>
+		</div>	
+		<div class="col-lg-2 yhormCont">
+			<p class="charName">Yhorm the Giant </p>
+			<img src="assets/images/yhorm.png" alt="yhorm" class="yhorm">
+			<p class="yhorm-hp"> </p>
+		</div>	
+	</div>
+	<div class="row">
+		<div class="col-lg-12 sectionTitles">
+			<p>Arena</p>
+			<button class=" btn btn-danger attack1  "> Attack 1 </button>
+			<button class=" btn btn-info attack2  "> Attack 2 </button>
+		</div>	
+	</div>
 	
-		<div class="col-lg-2 crystalOne crystal-hover">
-			<img src="assets/images/diamond.png" alt="diamond">
-		</div>	
-		<div class="col-lg-2 crystalTwo crystal-hover">
-			<img src="assets/images/emerald.png" alt="emerald">
-		</div>	
-		<div class="col-lg-2 crystalThree crystal-hover">
-			<img src="assets/images/obsidian.png" alt="obsidian">
-		</div>	
-		<div class="col-lg-2 crystalFour crystal-hover">
-			<img src="assets/images/ruby.png" alt="ruby">
-		</div>	
-		<div class="col-lg-4">
-			<!-- Intentinally left blank -->
-		</div>	
-
-	</div>
-	<div class="row">
-		<div class="col-lg-4 scoreTitle">
-			<p > Your Total Score Is </p>
-		</div>	
-	</div>
-	<div class="row">
-		<div class="col-lg-4 playerScore">
-			
-		</div>	
-	</div>
-</div>
+	
 
 
-<script src="assets/javascript/game.js"> </script>	
+<script src="assets/javascript/game-RPG.js"> </script>	
 </body>
 
 </html>
