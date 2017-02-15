@@ -96,3 +96,17 @@ text-align: center;
 	background-color: black;
 	height: 450px;
 }
+
+.combatLogsTitle{
+	text-align: center;
+	margin: 10px 0px 5px 0px;
+}
+
+.combatLogsText {
+	color: #ffff00;
+	font-size: 20px;
+	text-align: center;
+}
+.combatLogsCont {
+	border: 5 solid #ffffff;
+}

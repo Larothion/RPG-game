@@ -5,7 +5,8 @@ $(document).ready(function(){
 var knightHP = 120;
 var knightAP = 0;
 
-var pyromancerHP = 80;
+var pyroHP = 80;
+var pyroAP = 0;
 
 var pursuerHP = 250;
 var pursuerAP = 3;
@@ -26,11 +27,12 @@ var pursuerArena = false;
 var crystalArena = false;
 var yhormArena = false;
 var knightArena = false;
+var pyroArena = false;
 
 /*end switches*/
 
 $(".knight-hp").text(knightHP);
-$(".pyro-hp").text(pyromancerHP);
+$(".pyro-hp").text(pyroHP);
 $(".pursuer-hp").text(pursuerHP);
 $(".crystal-sage-hp").text(crystalHP);
 $(".yhorm-hp").text(yhormHP);
@@ -48,10 +50,11 @@ $(".knightCont").on("click", function() {
 });
 
 $(".pyromancerCont").on("click", function() {
+	pyroArena = true;
 	$(".pyromancerCont").animate({
 		top:"500px",
 		left:"400px"
-		}, "fast");
+		}, "normal");
 	$(".knightCont").hide();
 });
 
@@ -63,7 +66,7 @@ $(".pursuerCont").on("click", function() {
 	$(".pursuerCont").animate({
 		top:"450px",
 		left:"500px"
-		}, "fast");
+		}, "normal");
 
 });
 
@@ -72,7 +75,7 @@ $(".crystalCont").on("click", function() {
 	$(".crystalCont").animate({
 		top:"450px",
 		left:"410px"
-		}, "fast");
+		}, "normal");
 });
 
 $(".yhormCont").on("click", function() {
@@ -80,7 +83,7 @@ $(".yhormCont").on("click", function() {
 	$(".yhormCont").animate({
 		top:"450px",
 		left:"300px"
-		}, "fast");
+		}, "normal");
 });
 
 /*The user can then fight the enemy using the attack button.  When the attack button is pressed
@@ -88,6 +91,7 @@ the defender and enemy chartacter lose hp according to each of their respective 
 1 counter attack value while the userCharacter has a scaling one.  It then displays the damage that was done. It also 
 permanently stores the users' attack value. */
 
+/*knight code*/
 $(".attack1").on("click",function() {
 	if (knightArena && pursuerArena) {
 		knightAP += 5
@@ -95,6 +99,8 @@ $(".attack1").on("click",function() {
 		knightHP = knightHP - pursuerAP
 		$(".pursuer-hp").text(pursuerHP);
 		$(".knight-hp").text(knightHP);
+		$(".combatLogsText").html("You hit the Pursuer for " + knightAP + " damage!" + "<br><br>" + 
+			"The Pursuer hit you for " + pursuerAP + " damage.");
 		console.log("Attack is working");
 	}
 	if (pursuerHP <= 0) {
@@ -110,6 +116,8 @@ $(".attack1").on("click",function() {
 		knightHP = knightHP - crystalAP
 		$(".crystal-sage-hp").text(crystalHP);
 		$(".knight-hp").text(knightHP);
+		$(".combatLogsText").html("You hit the Crystal Sage for " + knightAP + " damage!" + "<br><br>" + 
+			"The Crystal Sage hit you for " + crystalAP + " damage.");
 		console.log("Attack is working");
 	}
 	if (crystalHP <= 0) {
@@ -125,11 +133,14 @@ $(".attack1").on("click",function() {
 		knightHP = knightHP - yhormAP
 		$(".yhorm-hp").text(yhormHP);
 		$(".knight-hp").text(knightHP);
+		$(".combatLogsText").html("You hit Yhorm the Giant for " + knightAP + " damage!" + "<br><br>" + 
+			"Yhorm hit you for " + yhormAP + " damage.");
 		console.log("Attack is working");
 	}
 	if (yhormHP <= 200) {
 		yhormAd.play()
 		$(".yhormCont").animate({
+		position: "absolute",
 		top:"100px",
 		left:"200px",
 		width: "700px",
@@ -141,37 +152,123 @@ $(".attack1").on("click",function() {
 		$(".charCont").hide()
 	}
 	if (yhormHP <= 0) {
+		yhormAd.pause();
 		$(".yhormCont").hide();
 		yhormArena = false;
 	}
 });
 
+
+/*end knight code*/
+
+/*Pyro code
+*/
+
 $(".attack1").on("click",function() {
-	if (knightHP <= 0) {
-	$(".knightCont").hide();
-	console.log("knight Died");
-	yhormArena = false;
-	crystalArena = false;
-	pursuerArena = false;
-};
+	if (pyroArena && pursuerArena) {
+		pyroAP += 7
+		pursuerHP = pursuerHP - pyroAP;
+		pursuerAP = 7;
+		pyroHP = pyroHP - pursuerAP
+		$(".pursuer-hp").text(pursuerHP);
+		$(".pyro-hp").text(pyroHP);
+		$(".combatLogsText").html("You hit the Pursuer for " + pyroAP + " damage!" + "<br><br>" + 
+			"The Pursuer's Sword has fire protection, increasing his attack!  He hits you for " + pursuerAP + " damage.");
+		console.log("Attack is working");
+	}
+	if (pursuerHP <= 0) {
+		$(".pursuerCont").hide();
+		pursuerArena = false;
+	}
 });
 
+$(".attack1").on("click",function() {
+	if (pyroArena && crystalArena) {
+		pyroAP += 7
+		crystalHP = crystalHP - pyroAP;
+		crystalAP = 2;
+		pyroHP = pyroHP - crystalAP
+		$(".crystal-sage-hp").text(crystalHP);
+		$(".pyro-hp").text(pyroHP);
+		$(".combatLogsText").html("You hit the Crystal Sage for " + pyroAP + " damage!" + "<br><br>" + 
+			"The Crystal Sage's magic is weak against fire!  He hits you for " + crystalAP + " damage.");
+		console.log("Attack is working");
+	}
+	if (crystalHP <= 0) {
+		$(".crystalCont").hide();
+		crystalArena = false;
+	}
+});
 
+$(".attack1").on("click",function() {
+	if (pyroArena && yhormArena) {
+		pyroAP += 7
+		yhormHP = yhormHP - pyroAP;
+		pyroHP = pyroHP - yhormAP
+		$(".yhorm-hp").text(yhormHP);
+		$(".pyro-hp").text(pyroHP);
+		$(".combatLogsText").html("You hit Yhorm the Giant for " + pyroAP + " damage!" + "<br><br>" + 
+			"Yhorm hit you for " + yhormAP + " damage.");
+		console.log("Attack is working");
+	}
+	if (yhormHP <= 200) {
+		yhormAd.play()
+		$(".yhormCont").animate({
+		top:"100px",
+		left:"300px",
+		width: "700px",
+		height:"700px"
+		}, "slow");
+		$(".yhorm").animate({
+		height:"600px"
+		}, "slow");
+	}
+	if (yhormHP <= 0) {
+		yhormAd.pause();
+		$(".yhormCont").hide();
+		yhormArena = false;
+	}
+});
+/*end pyro code*/
 
 
 /*If the usercharacter's health goes to or below 0, then display game over, end the scripts, and display a restart(reset)
-button.
+button.*/
+
+	$(".attack1").on("click",function() {
+		if (knightHP <= 0) {
+		$(".knightCont").hide();
+		$(".gameTitle").html("YOU DIED");
+		yhormArena = false;
+		crystalArena = false;
+		pursuerArena = false;
+			};
+	});
+
+	$(".attack1").on("click",function() {
+	if (pyroHP <= 0) {
+	$(".gameTitle").html("YOU DIED");
+	$(".pyroCont").hide();
+	yhormArena = false;
+	crystalArena = false;
+	pursuerArena = false;
+		};
+	});
 
 
-if the user defeats a character, display that they "have defeated "enemy name", and can choose to fight another enemy".
+
+/*if the user defeats a character, display that they "have defeated "enemy name", and can choose to fight another enemy".
 
 
 
-Once all 3 are defeated, it display "You Won!! Game Over!" and displays the restart(reset button)
-*/
+Once all 3 are defeated, it display "You Won!! Game Over!" and displays the restart(reset button)*/
 
 
-
+$(".attack1").on("click",function() {
+	if (pursuerHP <= 0 && crystalHP <= 0 && yhormHP <= 0) {
+	$(".gameTitle").html("You Won, Champion of Ash!")
+}
+});
 
 
 
