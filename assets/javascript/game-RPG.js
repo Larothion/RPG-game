@@ -138,6 +138,7 @@ $(".attack1").on("click",function() {
 		$(".yhorm").animate({
 		height:"600px"
 		}, "slow");
+		$(".charCont").hide()
 	}
 	if (yhormHP <= 0) {
 		$(".yhormCont").hide();
