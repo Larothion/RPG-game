@@ -1,1 +1,1 @@
-<?php include_once("index-blank.html"); ?>
+<?php include_once("index.html"); ?>
